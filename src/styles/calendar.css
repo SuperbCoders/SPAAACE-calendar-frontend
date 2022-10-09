@@ -1,56 +1,68 @@
 .react-calendar {
-  max-width: 350px;
+    max-width: 350px;
 }
 
 .react-calendar__navigation {
-  display: flex;
-  margin-bottom: 10px;
+    display: flex;
+    margin-bottom: 10px;
 }
 
 .react-calendar__navigation > button {
-  background-color: transparent;
-  border: none;
+    background-color: transparent;
+    border: none;
 }
 
 .react-calendar__navigation__label__labelText.react-calendar__navigation__label__labelText--from {
-  font-size: 22px;
-  text-transform: uppercase;
+    font-size: 22px;
+    text-transform: uppercase;
 }
 
 .react-calendar__month-view__days__day {
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  text-align: left;
-  margin: 8px 0;
-  font-weight: 300;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    text-align: left;
+    margin: 8px 0;
+    font-weight: 400;
 }
 
-.react-calendar__month-view__days__day.normal {
-  font-weight: 500;
+.react-calendar__month-view__days__day:nth-of-type(7n) {
+
+    font-weight: 300;
 }
 
-.react-calendar__month-view__days__day:hover {
-  text-decoration: underline;
+.react-calendar__month-view__days__day:nth-of-type(7n) {
+
+    font-weight: 300;
+}
+
+.react-calendar__month-view__days__day:not(.throw):hover {
+    font-weight: bold;
 }
 
 .react-calendar__month-view__days__day abbr {
-  font-size: 22px;
+    font-size: 22px;
 }
 
 .react-calendar__month-view__weekdays__weekday {
-  text-transform: uppercase;
-  margin: 10px 0;
+    text-transform: uppercase;
+    margin: 10px 0;
 }
 
 .react-calendar__month-view__weekdays__weekday abbr {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .normal.react-calendar__tile--active {
-  text-decoration: underline !important;
+    font-weight: bold !important;
+    text-decoration: underline !important;
 }
 
 .react-calendar__month-view__days__day.throw {
-  text-decoration: line-through !important;
+    text-decoration: line-through !important;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+    opacity: 0;
+    user-select: none;
 }
