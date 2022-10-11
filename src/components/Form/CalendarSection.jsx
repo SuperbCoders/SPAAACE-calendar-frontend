@@ -6,11 +6,11 @@ import Calendar from 'react-calendar';
 import '../../styles/calendar.css';
 import { LangContext } from '../../App';
 import { toast, ToastContainer } from 'react-toastify';
+import MonthPaginator from './MonthPaginator';
 
 const CalendarSection = ({ setDate, errorDay }) => {
   const translate = useContext(LangContext);
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [busyDaysList, setBusyDaysList] = useState([]);
   const [freeDaysList, setFreeDaysList] = useState([]);
   let freeDay = null;
 
@@ -48,28 +48,27 @@ const CalendarSection = ({ setDate, errorDay }) => {
 
   function tileClassName({ date, view }) {
     if (view === 'month') {
-      if (freeDaysList.some((item) => item.date === formatDateCustom(date))) {
-        return 'normal';
+      let isLight = false;
+      if (date.getDay() === 0 || date.getDay() === 6) {
+        isLight = true;
       }
-      return 'throw';
+      if (freeDaysList.some((item) => item.date === formatDateCustom(date))) {
+        return `${isLight ? 'light ' : ''} normal`;
+      }
+      return `${isLight ? ' light ' : ''} throw`;
     }
   }
 
-  useEffect(() => {
-    setBusyDaysList([]);
-    setFreeDaysList([]);
-
-    getInformationAboutBooking(firstDayOfMonth, lastDayOfMonth)
+  const loadData = (date) => {
+    getInformationAboutBooking(firstDayOfMonth(date), lastDayOfMonth(date))
       .then((data) => {
-      data.forEach((item) => {
-        if (item?.booking?.length > 0) {
-          setBusyDaysList((prevState) => [...prevState, item]);
-        } else {
-          setFreeDaysList((prevState) => [...prevState, item]);
-        }
-      });
-    })
-      .catch((e)=>{
+        data.forEach((item) => {
+          if (!item?.booking?.length > 0) {
+            setFreeDaysList((prevState) => [...prevState, item]);
+          }
+        });
+      })
+      .catch((e) => {
         toast.error(e?.message ?? 'Error', {
           position: 'top-right',
           autoClose: 3000,
@@ -79,8 +78,13 @@ const CalendarSection = ({ setDate, errorDay }) => {
           draggable: true,
           progress: undefined,
           theme: 'light',
-        })
+        });
       });
+  };
+
+  useEffect(() => {
+    setFreeDaysList([]);
+    loadData();
   }, []);
 
   return (
@@ -100,12 +104,15 @@ const CalendarSection = ({ setDate, errorDay }) => {
           <span className='txt-22'>5.</span>
         </div>
       </div>
-      <div className='row row-offset-40 row-offset-mobile-80'>
+      <div className='row row-offset-40 row-offset-mobile-80' style={{ minHeight: '320px' }}>
         <div className={'col-2 col-offset-1 col-mobile-6 col-offset-mobile-0'}>
           <Calendar
             locale={translate['NO'] === 'NO' ? 'en-EN' : 'ru-RU'}
             onChange={setSelectedDate}
             value={selectedDate}
+            navigationLabel={() => ''}
+            showNavigation={false}
+            showNeighboringMonth={false}
             onClickDay={(value) => handleClick(value)}
             tileClassName={tileClassName}
             formatShortWeekday={(locale, date) => {
@@ -113,6 +120,15 @@ const CalendarSection = ({ setDate, errorDay }) => {
               return week[date.getDay()];
             }}
           />
+        </div>
+        <div className='col-2 col-offset-mobile-0 d-none-mobile'>
+          <div className='row' style={{
+            justifyContent: 'space-between'
+          }}>
+            <MonthPaginator activeDate={selectedDate} setActiveDate={setSelectedDate} loadData={loadData} />
+            <span
+              className='txt-22'>{translate.months[new Date(selectedDate).getMonth()]} {new Date(selectedDate).getDate()}</span>
+          </div>
         </div>
       </div>
     </>

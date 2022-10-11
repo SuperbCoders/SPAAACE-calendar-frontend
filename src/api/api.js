@@ -1,4 +1,4 @@
-const baseUrl = 'http://185.91.52.232:5000';
+const baseUrl = 'https://sync.spaaace.io';
 
 export const getAllProducts = () => {
   return fetch(`${baseUrl}/api/products`)

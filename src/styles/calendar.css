@@ -26,16 +26,6 @@
     font-weight: 400;
 }
 
-.react-calendar__month-view__days__day:nth-of-type(7n) {
-
-    font-weight: 300;
-}
-
-.react-calendar__month-view__days__day:nth-of-type(7n) {
-
-    font-weight: 300;
-}
-
 .react-calendar__month-view__days__day:not(.throw):hover {
     font-weight: bold;
 }
@@ -62,7 +52,6 @@
     text-decoration: line-through !important;
 }
 
-.react-calendar__month-view__days__day--neighboringMonth {
-    opacity: 0;
-    user-select: none;
+.react-calendar__month-view__days__day.light {
+    font-weight: 300 !important;
 }

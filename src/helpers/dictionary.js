@@ -19,13 +19,16 @@ export const en = {
   Instagram: 'Instagram',
   Twitter: 'Twitter',
   SubmitForm:
-    "Cool! See you ${1}. We'll email you the Zoom link and arrange an exact time.",
-  SubmitInstagram: "DON'T FORGET TO FOLLOW US ON INSTAGRAM",
+    'Cool! See you ${1}. We\'ll email you the Zoom link and arrange an exact time.',
+  SubmitInstagram: 'DON\'T FORGET TO FOLLOW US ON INSTAGRAM',
   SUCCESS: 'SUCCESS',
   'Invalid email format': 'Invalid email format',
   'Required field': 'Required field',
   'Need to choose a day': 'Need to choose a day',
   MENU: 'MENU',
+  months: ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ]
 };
 
 export const ru = {
@@ -55,4 +58,17 @@ export const ru = {
   'Required field': 'Необходимо заполнить поле',
   'Need to choose a day': 'Необходимо выбрать день',
   MENU: 'Меню',
+  months: [
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Ноябрь',
+    'Декабрь',
+  ]
 };
