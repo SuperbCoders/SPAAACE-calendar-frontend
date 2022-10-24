@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { firstDayOfMonth, lastDayOfMonth } from '../../helpers/helpers';
+import { addZeroIfNeed, firstDayOfMonth, lastDayOfMonth } from '../../helpers/helpers';
 import { getInformationAboutBooking } from '../../api/api';
 import ErrorMessage from '../ErrorMessage';
 import Calendar from 'react-calendar';
@@ -24,9 +24,7 @@ const CalendarSection = ({ setDate, errorDay }) => {
   };
 
   const formatDateCustom = (date) => {
-    return `${date.getFullYear()}.${
-      date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
-    }.${date.getDate()}`;
+    return `${date.getFullYear()}.${addZeroIfNeed(date.getMonth() + 1)}.${addZeroIfNeed(date.getDate())}`;
   };
 
   const handleClick = (today) => {
