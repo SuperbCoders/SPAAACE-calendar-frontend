@@ -32,6 +32,7 @@
 
 .react-calendar__month-view__days__day abbr {
     font-size: 22px;
+    color: #000 !important;
 }
 
 .react-calendar__month-view__weekdays__weekday {
@@ -50,6 +51,7 @@
 
 .react-calendar__month-view__days__day.throw {
     text-decoration: line-through !important;
+    color: #000 !important;
 }
 
 .react-calendar__month-view__days__day.light {

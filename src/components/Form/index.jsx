@@ -91,7 +91,6 @@ const Form = ({ setInfoUser, setSuccessSubmit }) => {
 
     requestToBooking(infoBooking)
       .then((data) => {
-        console.log(data.error);
         if (data?.error) throw new Error(data.error);
         setInfoUser({
           date: infoBooking.date,

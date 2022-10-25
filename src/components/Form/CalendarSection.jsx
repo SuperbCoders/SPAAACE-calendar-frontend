@@ -113,6 +113,7 @@ const CalendarSection = ({ setDate, errorDay }) => {
           <div className={'col-2 col-offset-1 col-mobile-6 col-offset-mobile-0'}>
             <Calendar
               locale={translate['NO'] === 'NO' ? 'en-EN' : 'ru-RU'}
+              minDate={new Date()}
               onChange={setSelectedDate}
               value={selectedDate}
               navigationLabel={() => ''}

@@ -9,13 +9,19 @@ const MonthPaginator = ({ activeDate, setActiveDate, loadData }) => {
 
     loadData(newDate);
     setActiveDate(newDate);
-    console.log(newDate);
   };
 
   return (
     <div>
       <span onClick={() => {
-        setNewDate(-1);
+        const currentYear = new Date().getFullYear();
+        const currentMonth = new Date().getMonth() + 1;
+        const activeDateYear = activeDate.getFullYear();
+        const activeDateMonth = activeDate.getMonth() + 1;
+
+        if ((activeDateYear > currentYear) || (activeDateMonth > currentMonth)) {
+          setNewDate(-1);
+        }
       }}
             className='txt-22' style={{
         height: '27px',
